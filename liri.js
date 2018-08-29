@@ -37,15 +37,10 @@ var bandsInTown = function (artist) {
       throw error;
     } else if (!error) {
       var json = JSON.parse(body);
-      console.log(json);
-      console.log("Venue Name:" + json[0].venue.name);
+      //console.log(json[0]);
+      console.log("Venue Name: " + json[0].venue.name);
       console.log("Venue Location: " + json[0].venue.city + ", " + json[0].venue.region);
-      console.log("Event Date: " + json[0].datetime);
-      fs.appendFile(function (err) {
-        if (err) {
-          return console.log(err);
-        }
-      });
+      console.log(moment(json[0].datetime).format("dddd, MMMM Do YYYY, h:mm:ss a"));
     }
   });
 }
@@ -102,7 +97,7 @@ function getMovie(parameter) {
 /**************************************************************************/
 //function for do-what-it-says call
 function justDoIt() {
-  
+
   fs.readFile("random.txt", "utf8", function (error, data) {
     if (error) {
       return console.log(error);
@@ -122,9 +117,9 @@ function justDoIt() {
       }
     }
     fs.appendFile("log.txt", "Random Text." + "\n", function (err) {
-      if (err){
+      if (err) {
         console.log(err);
-      }    
+      }
     })
   });
 }
